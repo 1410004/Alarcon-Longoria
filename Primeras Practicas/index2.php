@@ -7,12 +7,13 @@
 
     $persona =new persona();
 
+
+
+
     //asignar valores a las popiedades del objetos
-
-
     $persona->setEdad(30);
     $persona->setAltura(1.80);
-    $persona->peso(80);
+    $persona->setPeso(80);
 
     //impresiones de los resultado
 
