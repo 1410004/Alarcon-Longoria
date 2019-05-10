@@ -53,7 +53,7 @@ class persona {
 
     //Calcular el IMC accediendo mediante los metodos get
     public function imc2(){
-        return$this->getPeso() / ($this->getAltura() * $this->getAltura());
+        return$this->getPeso() / ($this->getAltura()     * $this->getAltura());
     }
 
 
