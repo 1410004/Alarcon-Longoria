@@ -55,6 +55,15 @@
                 return false;
             }
         }
+
+        public function conectar ($usuario,$contrasena){
+            $sql =" SELECT * FROM usuarios WHERE `username`='$usuario' AND `password` ='$contrasena'";
+            $res = mysqli_query($this->con,$sql);
+            $usuario = mysqli_fetch_object($res);
+            return $usuario;
+        }
     }
+
+
 
 ?>
