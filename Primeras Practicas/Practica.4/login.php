@@ -51,7 +51,7 @@
 									$select_all_clientes[]=$fila;
         		?>
         				<div class="row">
-	                           
+	                           <!--es en donde se ecunetra el formulario el Stle es el tamano de la ventana del formulario-->
 								<table id="example" class="table table-striped table-bordered display" style="width:100%">
 						<thead>
 							<tr>
@@ -67,13 +67,14 @@
 						</thead>
 					                <tbody>
                                     <?php foreach($select_all_clientes as $fila){?>
-					                		<tr>
+					                		<tr> <!--Donde se muetras las datos llenos en el formulario -->
 					                			<td><?php echo $fila['nombres']; ?></td>
 					                			<td><?php echo $fila['apellidos']; ?></td>
 					                			<td><?php echo $fila['telefono']; ?></td>
 					                			<td><?php echo $fila['direccion']; ?></td>
 					                			<td><?php echo $fila['correo_electronico']; ?></td>
 					                			<td>
+																	<!--Son los bonotes en donde se cunetra la opcion de editar y eliminar que se encuntran  abajo-->
 					                				<a type="button" class="btn btn-warning" href="update.php?id=<?php echo $fila['id']; ?>" title="Editar" data-toggle="tooltip">
 									                	<i class="fa fa-fw fa-edit"></i>
 									              	</a>

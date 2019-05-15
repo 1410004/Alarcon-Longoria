@@ -1,10 +1,11 @@
 <?php
-    class Database{
+    class Database{// en esta clase es en donde se hace la coneccion a la base de datos como es local se pone localhost
+        
         private $con;
-        private $dbhost="localhost";
-        private $dbuser="root";
-        private $dbpass="";
-        private $dbname="tuto_poo";
+        private $dbhost="localhost"; // 
+        private $dbuser="root";// nombre del usuario del admin MYSQL
+        private $dbpass="";// contrasena
+        private $dbname="tuto_poo";// nombre de la base de datos
         public function __construct(){
             $this->connect_bd();
         }
