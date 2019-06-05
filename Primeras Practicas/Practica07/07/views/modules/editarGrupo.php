@@ -2,13 +2,13 @@
     //Array que almacena todos los datos traidos de la tabla
     $datoProducto = array();//Hacer array para los datos
     $datos = new MvcController();//Llamar al controlador
-    $datoGrupo= $datos->obtenerGrupos();//Obtener los datos del usuario
 
     if($_POST){
-        $datos->registrarGrupo();
+        $datos->altaGrupo($_GET["id"]);
     }
 
-    $respuesta_alumnos= $datos->obtenerAlumnos();
+    //$respuesta_alumnos= $datos->obtenerAlumnosSinGrupo();
+    $respuesta_alumnos = $datos->obtenerAlumnosGrupoDiferente($_GET["id"]);
 
     $st_alumnos="";
         for($i=0;$i<sizeof($respuesta_alumnos);$i++)
@@ -16,50 +16,14 @@
 
 ?>
 
-<center><h1>Lista de Grupos</h1></center><br>
-<center>
-<!--Mostrar la tabla de los productos mediante una tabla dinamica-->
 
-<table cellpadding="5" border="0">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Ver estudiantes</th>
-            <th>Alta de estudiantes</th> 
-            <th>Borrar</th> 
-        </tr>
-        
-    </thead>
-    
-    <tbody>
+<center><h2>Alta de estudiantes en el grupo seleccionado</h2></center>
+	
 
-        <!--Este ciclo es para recorrer la tabla de los datos e imprimirla -->
-        <?php for($i=0; $i < count($datoGrupo); $i++ ) { ?>
-        <tr>
-            <td><?php echo $datoGrupo[$i]["id"]?></td>
-            <td><?php echo $datoGrupo[$i]["nombre"]?></td>
-            <td><a href="index.php?action=verGrupo&id=<?php echo $datoGrupo[$i]["id"]?>">Ver estudiantes</a></td>
-            <td><a href="index.php?action=editarGrupo&id=<?php echo $datoGrupo[$i]["id"]?>">Alta</a></td>
-            <td><a href="index.php?action=eliminarGrupo&id=<?php echo $datoGrupo[$i]["id"]?>">Borrar</a></td>
-        </tr>
-		<?php } ?>
-    </tbody>
-</table>
-<br>
-</center>
-<hr>
-<center><h2>Registrar Grupo</h2></center>
-	
-	
 	<form method="POST">
 		<input type="hidden" id="hid" name="hid"></input>
            
-        <label for="nombre">Nombre del grupo:</label>
-        <input type="text" name="nombre" required>
         
-
-        <h4>Alumnos en el grupo</h4>
         <table>
             <tr>
                 <td>
@@ -76,7 +40,7 @@
         <table>
         <table id="alumnos"></table>
         <br>
-        <button class="small success" id="guardar" onclick="sendData();" type="submit" disabled>Registrar Grupo</button>
+        <button class="small success" id="guardar" onclick="sendData();" type="submit" disabled>Alta de alumnos en el grupo</button>
 
         <script>
                 var flag_alumnos = 0;

@@ -212,6 +212,29 @@ class MvcController{
         }
     }
 
+    public function altaGrupo($id){
+            $data = $_POST['hid'];
+            
+            $respuesta = Datos::registrarGrupoAlumnosModel($data, $id, "grupos_alumnos");
+        
+            //Se imprime la respuesta en la vista
+            if($respuesta == "success"){
+                header("location:index.php?action=altaG");
+            }
+            else{
+                header("loaction:index.php");
+            }
+    }
+  
+    public function obtenerAlumnosGrupoDiferente($id){
+        $respuesta = Datos:: obtenerDatosAlumnosGrupoDiferente($id);//Mandar los datos al crud para que consiga la información de la tabla
+            if($respuesta){
+                return $respuesta;//Aqui regresa lo de la sentencia que le mandaron al crud
+            }else{
+                return [];
+            }
+    }
+  
     public function verificarMateriasMaestros($id){
         $respuesta = Datos::verificarMateriasMaestrosModel($id, "materias");
             //Se imprime la respuesta en la vista

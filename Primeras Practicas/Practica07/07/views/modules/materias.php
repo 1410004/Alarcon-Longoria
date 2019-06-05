@@ -14,7 +14,7 @@
     $respuesta_grupos= $datos->obtenerGrupos();
 
     $st_grupos="";
-        for($i=0;$i<sizeof($respuesta_maestros);$i++)
+        for($i=0;$i<sizeof($respuesta_grupos);$i++)
             $st_grupos=$st_grupos."<option value='".$respuesta_grupos[$i]['id']."'>".$respuesta_grupos[$i]['nombre']."</option>";
 
     if($_POST){

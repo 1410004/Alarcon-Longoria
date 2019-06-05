@@ -3,13 +3,17 @@ class Paginas{
     //Una funcion con el parametro $enlacesModel que se recibe a traves del controlador
     public function enlacesPaginasModel($enlacesModel){
         //Validamos
-        if($enlacesModel == "salir" || $enlacesModel == "editar" || $enlacesModel == "ingresar" || $enlacesModel == "alumnos" || $enlacesModel == "eliminar" || $enlacesModel == "maestros"  || $enlacesModel == "editarMaestro"  || $enlacesModel == "eliminarMaestro" || $enlacesModel == "editarAlumno"  || $enlacesModel == "eliminarAlumno" || $enlacesModel == "grupos" || $enlacesModel == "materias" || $enlacesModel == "eliminarGrupo" || $enlacesModel == "eliminarMateria" || $enlacesModel == "editarMateria" || $enlacesModel == "verGrupo" || $enlacesModel == "bajaAlumnoGrupo"){
+        if( $enlacesModel == "alumnos"  || $enlacesModel == "editarGrupo" || $enlacesModel == "eliminar" || $enlacesModel == "maestros"  || $enlacesModel == "editarMaestro"  || $enlacesModel == "eliminarMaestro" || $enlacesModel == "editarAlumno"  || $enlacesModel == "eliminarAlumno" || $enlacesModel == "grupos" || $enlacesModel == "materias" || $enlacesModel == "eliminarGrupo" || $enlacesModel == "eliminarMateria" || $enlacesModel == "editarMateria" || $enlacesModel == "verGrupo" || $enlacesModel == "bajaAlumnoGrupo"){
             //Mostramos el URL concatenado con la variable $enlacesModel
             $module = "views/modules/".$enlacesModel.".php";
         }
         //Una vez que action vienen vacio (validnaod en el controlador) enctonces se consulta si la variable $enlacesModel es igual a la cadena index de ser asi se muestre index.php
         else if($enlacesModel == "index"){
             $module = "views/modules/registro.php";
+        }
+        else if($enlacesModel == "altaG"){
+            echo "<script>alert('Alta de alumnos realizada');</script>";
+            $module = "views/modules/grupos.php";
         }
         else if($enlacesModel == "ok"){
             echo "<script>alert('Usuario registrado');</script>";

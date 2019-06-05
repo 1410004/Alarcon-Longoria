@@ -16,7 +16,18 @@ class Datos extends Conexion{
         }
 
     }
-
+    
+  public function obtenerDatosAlumnosGrupoDiferente($id){
+        $stmt = Conexion::conectar()->prepare("SELECT alumnos.id, alumnos.nombre, alumnos.apellido FROM alumnos WHERE NOT alumnos.id IN (SELECT alumnos.id FROM alumnos INNER JOIN grupos_alumnos on alumnos.id = grupos_alumnos.id_alumno WHERE grupos_alumnos.id = $id);");
+        $stmt->execute();
+        $respuesta = array();
+        if($respuesta = $stmt->FetchAll()){
+            return $respuesta;
+        }else{
+            return [];
+        }
+    }
+  
     public function obtenerGrupoModel($id,$tabla){
         //La consulta Select selecciona los datos de la tabla de los usuarios
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_grupo = $id");
