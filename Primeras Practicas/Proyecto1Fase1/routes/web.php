@@ -1,0 +1,100 @@
+<?php
+
+Route::get('/', 'Auth\LoginController@index')->name('main');
+Auth::routes();
+
+
+Route::group(['middleware'=>['auth']], function () {
+Route::get('/principal', 'HomeController@index')->name('dashboard');
+
+    Route::group(['middleware'=>['access:1']], function(){
+    
+    Route::post('/ajax/inventario', 'VentasController@inventarioActual')->name('ventas.obtenerInventario');
+      
+    Route::get('/clientes', 'ClientesController@index')->name('clientes.list');
+    
+    Route::get('/clientes/{id}', 'ClientesController@show')->where('id', '[0-9]+')->name('clientes.show');
+    
+    Route::get('/clientes/crear', 'ClientesController@create')->name('clientes.create');
+    
+    Route::get('/clientes/{cliente}/editar', 'ClientesController@edit')->where('id', '[0-9]+')->name('clientes.edit');
+    
+    Route::post('/clientes', 'ClientesController@store')->name('clientes.store');
+    
+    Route::delete('/clientes/{cliente}', 'ClientesController@destroy')->name('clientes.destroy');
+    
+    Route::put('/clientes/{cliente}', 'ClientesController@update')->name('clientes.update');
+    
+    Route::get('/proveedores', 'ProveedoresController@index')->name('proveedores.list');
+    
+    Route::get('/proveedores/{id}', 'ProveedoresController@show')->where('id', '[0-9]+')->name('proveedores.show');
+    
+    Route::get('/proveedores/crear', 'ProveedoresController@create')->name('proveedores.create');
+    
+    Route::get('/proveedores/{proveedor}/editar', 'ProveedoresController@edit')->where('id', '[0-9]+')->name('proveedores.edit');
+    
+    Route::post('/proveedores', 'ProveedoresController@store')->name('proveedores.store');
+    
+    Route::delete('/proveedores/{proveedor}', 'ProveedoresController@destroy')->name('proveedores.destroy');
+    
+    Route::put('/proveedores/{proveedor}', 'ProveedoresController@update')->name('proveedores.update');
+    
+    Route::get('/categorias', 'CategoriasController@index')->name('categorias.list');
+    
+    Route::get('/categorias/{id}', 'CategoriasController@show')->where('id', '[0-9]+')->name('categorias.show');
+    
+    Route::get('/categorias/crear', 'CategoriasController@create')->name('categorias.create');
+    
+    Route::get('/categorias/{categoria}/editar', 'CategoriasController@edit')->where('id', '[0-9]+')->name('categorias.edit');
+    
+    Route::post('/categorias', 'CategoriasController@store')->name('categorias.store');
+    
+    Route::delete('/categorias/{categoria}', 'CategoriasController@destroy')->name('categorias.destroy');
+    
+    Route::put('/categorias/{categoria}', 'CategoriasController@update')->name('categorias.update');
+    
+    Route::get('/articulos', 'ArticulosController@index')->name('articulos.list');
+    
+    Route::get('/articulos/{id}', 'ArticulosController@show')->where('id', '[0-9]+')->name('articulos.show');
+    
+    Route::get('/articulos/crear', 'ArticulosController@create')->name('articulos.create');
+    
+    Route::get('/articulos/{articulo}/editar', 'ArticulosController@edit')->where('id', '[0-9]+')->name('articulos.edit');
+    
+    Route::post('/articulos', 'ArticulosController@store')->name('articulos.store');
+    
+    Route::delete('/articulos/{articulo}', 'ArticulosController@destroy')->name('articulos.destroy');
+    
+    Route::put('/articulos/{articulo}', 'ArticulosController@update')->name('articulos.update');
+    
+    Route::get('/ventas', 'VentasController@index')->name('ventas.list');
+    
+    Route::get('/ventas/{id}', 'VentasController@show')->where('id', '[0-9]+')->name('ventas.show');
+    
+    Route::get('/ventas/crear', 'VentasController@create')->name('ventas.create');
+    
+    Route::get('/ventas/{venta}/editar', 'VentasController@edit')->where('id', '[0-9]+')->name('ventas.edit');
+    
+    Route::post('/ventas', 'VentasController@store')->name('ventas.store');
+    
+    Route::delete('/ventas/{venta}', 'VentasController@destroy')->name('ventas.destroy');
+    
+    Route::put('/ventas/{venta}', 'VentasController@update')->name('ventas.update');
+    
+    Route::get('/compras', 'ComprasController@index')->name('compras.list');
+    
+    Route::get('/compras/{id}', 'ComprasController@show')->where('id', '[0-9]+')->name('compras.show');
+    
+    Route::get('/compras/crear', 'ComprasController@create')->name('compras.create');
+    
+    Route::get('/compras/{compra}/editar', 'ComprasController@edit')->where('id', '[0-9]+')->name('compras.edit');
+    
+    Route::post('/compras', 'ComprasController@store')->name('compras.store');
+    
+    Route::delete('/compras/{compra}', 'ComprasController@destroy')->name('compras.destroy');
+    
+    Route::put('/compras/{compra}', 'ComprasController@update')->name('compras.update');
+  }); 
+});
+
+Route::get('type/{type}', 'SweetAlertController@notification');
